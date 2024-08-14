@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1> Обмен ключами</h1>
+<form method="POST">
+    <div class="input-group">
+        <label for="n" class="input-group-text">Введите N</label>
+        <textarea class="form-control" name="n" aria-label="n">{{ request.form.n or ''}}</textarea>
+    </div>
+    <div class="input-group">
+        <label for="a" class="input-group-text">Введите A</label>
+        <textarea class="form-control" name="a" aria-label="a">{{ request.form.a or ''}}</textarea>
+    </div>
+    <div class="input-group">
+        <label for="ka" class="input-group-text">Введите Ka</label>
+        <textarea class="form-control" name="ka" aria-label="ka">{{ request.form.ka or ''}}</textarea>
+    </div>
+    <div class="input-group">
+        <label for="kb" class="input-group-text">Введите Kb</label>
+        <textarea class="form-control" name="kb" aria-label="kb">{{ request.form.kb or ''}}</textarea>
+    </div>
+    <div class="mb-3"><button type="submit" class="btn btn-primary">Выполнить</button></div>
+    <div class="input-group">
+        <label class="input-group-text">Результат</label>
+        <textarea class="form-control" aria-label="Result">{{ result or '' }}</textarea>
+    </div>
+    
+</form>
+{% endblock %}

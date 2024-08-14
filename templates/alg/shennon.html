@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Блокнот Шеннона</h1>
+<form method="POST">
+    <div class="input-group">
+        <label for="original_text" class="input-group-text">Введите текст</label>
+        <textarea class="form-control" name="original_text" aria-label="original_text">{{ request.form.original_text or ''}}</textarea>
+    </div>
+    <div class="input-group">
+        <label for="gamma" class="input-group-text">Введите гамму (для расшифрования)</label>
+        <textarea class="form-control" name="gamma" aria-label="gamma">{{ request.form.gamma or ''}}</textarea>
+    </div>
+    <div class="input-group">
+        <label for="t0" class="input-group-text">Введите T0 (для шифрования)</label>
+        <textarea class="form-control" name="t0" aria-label="t0">{{ request.form.t0 or ''}}</textarea>
+    </div>
+    <div class="input-group">
+        <label for="a" class="input-group-text">Введите a (для шифрования)</label>
+        <textarea class="form-control" name="a" aria-label="a">{{ request.form.a or ''}}</textarea>
+    </div>
+    <div class="input-group">
+        <label for="c" class="input-group-text">Введите c (для шифрования)</label>
+        <textarea class="form-control" name="c" aria-label="a">{{ request.form.c or ''}}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="operation">Выберите действие</label>
+        <select class="form-select" name="operation" id="operation">
+            {% for op in operations %}
+                <option {% if request.form.operation == op %}selected{% endif %}>{{ op }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3"><button type="submit" class="btn btn-primary">Выполнить</button></div>
+    <div class="input-group">
+        <label class="input-group-text">Результат</label>
+        <textarea class="form-control" aria-label="result_text">{{ result_text or '' }}</textarea>
+    </div>
+    <div class="input-group">
+        <label class="input-group-text">Результат</label>
+        <textarea class="form-control" aria-label="result_gamma">{{ result_gamma or '' }}</textarea>
+    </div>
+    
+</form>
+{% endblock %}

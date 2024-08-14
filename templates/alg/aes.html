@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>AES</h1>
+<form method="POST">
+    <div class="input-group">
+        <label for="original_text" class="input-group-text">Введите текст</label>
+        <textarea class="form-control" name="original_text" aria-label="original_text">{{ request.form.original_text or ''}}</textarea>
+    </div>
+    <div class="input-group">
+        <label for="key" class="input-group-text">Введите ключ (hex)</label>
+        <textarea class="form-control" name="key" aria-label="key">{{ request.form.key or ''}}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="operation">Выберите действие</label>
+        <select class="form-select" name="operation" id="operation">
+            {% for op in operations %}
+                <option {% if request.form.operation == op %}selected{% endif %}>{{ op }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3"><button type="submit" class="btn btn-primary">Выполнить</button></div>
+    <div class="input-group">
+        <label class="input-group-text">Результат</label>
+        <textarea class="form-control" aria-label="Result">{{ result or '' }}</textarea>
+    </div>
+    
+</form>
+
+{% endblock %}

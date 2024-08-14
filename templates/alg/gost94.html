@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>ГОСТ Р 34.10-94</h1>
+<form method="POST">
+    <div class="input-group">
+        <label for="original_text" class="input-group-text">Введите текст</label>
+        <textarea class="form-control" name="original_text" aria-label="original_text">{{ request.form.original_text or ''}}</textarea>
+    </div>
+    <div class="input-group">
+        <label for="p" class="input-group-text">Введите P</label>
+        <textarea class="form-control" name="p" aria-label="p">{{ request.form.p or ''}}</textarea>
+    </div>
+    <div class="input-group">
+        <label for="q" class="input-group-text">Введите Q</label>
+        <textarea class="form-control" name="q" aria-label="q">{{ request.form.q or ''}}</textarea>
+    </div>
+    <div class="input-group">
+        <label for="a" class="input-group-text">Введите значение A</label>
+        <textarea class="form-control" name="a" aria-label="a">{{ request.form.a or ''}}</textarea>
+    </div>
+    <div class="input-group">
+        <label for="x" class="input-group-text">Введите X</label>
+        <textarea class="form-control" name="x" aria-label="x">{{ request.form.x or ''}}</textarea>
+    </div>
+    <div class="input-group">
+        <label for="k" class="input-group-text">Введите K</label>
+        <textarea class="form-control" name="k" aria-label="k">{{ request.form.k or ''}}</textarea>
+    </div>
+    <div class="input-group">
+        <label for="r" class="input-group-text">Введите значение R (для проверки)</label>
+        <textarea class="form-control" name="r" aria-label="r">{{ request.form.r or ''}}</textarea>
+    </div>
+    <div class="input-group">
+        <label for="s" class="input-group-text">Введите значение S (для проверки)</label>
+        <textarea class="form-control" name="s" aria-label="s">{{ request.form.s or ''}}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="operation">Выберите действие</label>
+        <select class="form-select" name="operation" id="operation">
+            {% for op in operations %}
+                <option {% if request.form.operation == op %}selected{% endif %}>{{ op }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3"><button type="submit" class="btn btn-primary">Выполнить</button></div>
+    <div class="input-group">
+        <label class="input-group-text">Результат</label>
+        <textarea class="form-control" aria-label="Result">{{ result or '' }}</textarea>
+    </div>
+    
+</form>
+{% endblock %}
